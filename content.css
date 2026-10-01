@@ -1,0 +1,209 @@
+/* =========================================================
+   BOTÃO no header (estilo integrado ao ML)
+   ========================================================= */
+#ml-ext-btn-data {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-left: 6px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #333;
+  vertical-align: middle;
+  position: relative;
+  transition: background .15s ease;
+}
+
+#ml-ext-btn-data:hover {
+  background: rgba(0, 0, 0, .07);
+}
+
+#ml-ext-btn-data svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  pointer-events: none;
+}
+
+/* Badge (bolinha amarela quando há resultado pronto) */
+#ml-ext-btn-data.ml-has-data::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00A650;
+  border: 2px solid #fff;
+}
+
+/* =========================================================
+   POPUP flutuante com a data
+   ========================================================= */
+#ml-ext-popup-data {
+  position: fixed;
+  top: 90px;
+  right: 24px;
+  width: 320px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .18), 0 2px 8px rgba(0, 0, 0, .08);
+  padding: 0;
+  z-index: 2147483647;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  color: #1a1a1a;
+  overflow: hidden;
+  animation: mlFadeIn .2s ease;
+}
+
+@keyframes mlFadeIn {
+  from { opacity: 0; transform: translateY(-8px) scale(.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Header do popup */
+#ml-ext-popup-data .ml-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, #2D3277 0%, #3d43a0 100%);
+  color: #fff;
+}
+
+#ml-ext-popup-data .ml-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+
+#ml-ext-popup-data .ml-title svg {
+  width: 18px;
+  height: 18px;
+  fill: #FFE600;
+}
+
+#ml-ext-popup-data .ml-close {
+  background: rgba(255, 255, 255, .15);
+  border: none;
+  color: #fff;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s;
+}
+
+#ml-ext-popup-data .ml-close:hover {
+  background: rgba(255, 255, 255, .3);
+}
+
+/* Corpo */
+#ml-ext-popup-data .ml-body {
+  padding: 18px 16px 16px;
+}
+
+#ml-ext-popup-data .ml-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  color: #888;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+#ml-ext-popup-data .ml-data {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2D3277;
+  letter-spacing: -.3px;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+#ml-ext-popup-data .ml-data.ml-erro {
+  font-size: 13px;
+  font-weight: 500;
+  color: #b00020;
+  line-height: 1.4;
+}
+
+#ml-ext-popup-data .ml-data.ml-loading {
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Spinner */
+#ml-ext-popup-data .ml-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #e0e0e0;
+  border-top-color: #2D3277;
+  border-radius: 50%;
+  animation: mlSpin .7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes mlSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Meta info */
+#ml-ext-popup-data .ml-meta {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #999;
+}
+
+#ml-ext-popup-data .ml-meta strong {
+  color: #555;
+  font-weight: 600;
+}
+
+/* Botão de refresh */
+#ml-ext-popup-data .ml-refresh {
+  margin-top: 12px;
+  width: 100%;
+  padding: 9px;
+  border: 1px solid #e0e0e0;
+  background: #fafafa;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: #2D3277;
+  transition: all .15s;
+  font-family: inherit;
+}
+
+#ml-ext-popup-data .ml-refresh:hover {
+  background: #f0f0f0;
+  border-color: #ccc;
+}
+
+#ml-ext-popup-data .ml-refresh:active {
+  transform: scale(.98);
+}

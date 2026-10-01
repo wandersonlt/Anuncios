@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "ML - Data de Criação do Anúncio",
+  "version": "3.0.0",
+  "description": "Mostra a data de criação de anúncios no Mercado Livre. Releitura automática a cada troca de produto.",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": ["*://*.mercadolivre.com.br/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "ML - Data do Anúncio"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.mercadolivre.com.br/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["content.css"],
+      "matches": ["*://*.mercadolivre.com.br/*"]
+    }
+  ]
+}
