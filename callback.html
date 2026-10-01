@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Callback - Anuncios ML</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+    .code { background: #f0f0f0; padding: 15px; border-radius: 8px; word-break: break-all; margin: 15px 0; }
+    .success { color: #00A650; font-weight: bold; }
+    button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Autorização recebida!</h1>
+  <p class="success">✅ O Mercado Livre redirecionou você de volta.</p>
+
+  <p>Copie o código abaixo e cole na sua extensão ou use-o para trocar pelo Access Token:</p>
+
+  <div class="code" id="code-box">Nenhum código encontrado na URL.</div>
+
+  <button onclick="copiarCodigo()">📋 Copiar código</button>
+
+  <p style="margin-top: 30px; font-size: 12px; color: #888;">
+    Esta página é apenas para receber o <code>code</code> da API do Mercado Livre.
+  </p>
+
+  <script>
+    // Pega o parâmetro "code" da URL
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const state = params.get('state');
+
+    if (code) {
+      document.getElementById('code-box').textContent = code;
+      
+      // Se tiver state, mostra também (opcional)
+      if (state) {
+        const p = document.createElement('p');
+        p.innerHTML = '<small><strong>State:</strong> ' + state + '</small>';
+        document.getElementById('code-box').after(p);
+      }
+    } else {
+      document.getElementById('code-box').textContent = 
+        '❌ Nenhum código na URL. URL atual: ' + window.location.href;
+    }
+
+    function copiarCodigo() {
+      const texto = document.getElementById('code-box').textContent;
+      navigator.clipboard.writeText(texto).then(() => {
+        alert('Código copiado!');
+      });
+    }
+  </script>
+</body>
+</html>
